@@ -293,8 +293,8 @@ Where:
 
 **Important Rules:**
 - Struct members must have explicit types - they cannot use `auto` for type inference
-- Struct definitions cannot be nested (no struct declaration inside another struct declaration)
-- However, struct members can be of other struct types (using previously declared struct types)
+- Nested struct definitions are not supported: Struct declarations cannot be nested (you cannot declare a struct inside another struct declaration)
+- Struct members can be struct types: However, struct members can be of other struct types (using previously declared struct types)
 - Struct names must be unique in the program
 - Struct members can be of primitive types (`int`, `float`, `string`) or other struct types (that are declared before use)
 
@@ -335,8 +335,8 @@ Where:
   - The first expression initializes the first member
   - The second expression initializes the second member
   - And so on...
-- Each expression in `<member_list>` can be a literal, a variable, a function call, a struct literal (for nested structs), or any other expression that evaluates to the correct type
-- **Nested struct initialization:** If a struct member is of another struct type, it can be initialized using a struct literal (e.g., `Point3D p = {{1, 2}, 3};`) or a variable of that struct type (e.g., `Point2D p2 = {1, 2}; Point3D p3 = {p2, 3};`)
+- Each expression in `<member_list>` can be a literal, a variable, a function call, a struct literal (for struct members that are struct types), or any other expression that evaluates to the correct type
+- **Initialization of struct members that are struct types:** If a struct member is of another struct type, it can be initialized using a struct literal (e.g., `Point3D p = {{1, 2}, 3};`) or a variable of that struct type (e.g., `Point2D p2 = {1, 2}; Point3D p3 = {p2, 3};`)
 - **Struct literals in function calls:** Struct literals can be used as function arguments (e.g., `f({4, 5})`), where the struct literal's type is determined by the function parameter type
 - If a struct variable is declared without initialization, all its members have undefined values until assigned
 
@@ -1253,8 +1253,8 @@ A TyC program consists of a sequence of struct declarations and function declara
 - Each struct declaration defines a new composite type with named members
 - Struct members must have explicit types (`int`, `float`, `string`, or another struct type)
 - Struct members cannot use `auto` for type inference
-- Struct definitions cannot be nested (no struct declaration inside another struct declaration)
-- However, struct members can be of other struct types (using previously declared struct types)
+- **Nested struct definitions are not supported:** Struct declarations cannot be nested (you cannot declare a struct inside another struct declaration)
+- **Struct members can be struct types:** However, struct members can be of other struct types (using previously declared struct types)
 
 **Function Declarations:**
 - Each function has:
